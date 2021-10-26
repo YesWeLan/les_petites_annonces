@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Compte de {{app.user.firstname}} {{app.user.name}}{% endblock %}
+
+{% block body %}
+    <!-- 
+        user
+    -->
+    <div class="col-lg-10 m-lg-auto col-xxl-8 _user">
+        <!--
+            flash message
+        -->
+            {% for message in app.flashes('message') %}
+                <div class="_flash_msg">
+                    <p>
+                        <span class="material-icons">notifications</span>
+                        <span class="material-icons" onclick="closePopup()">close</span>
+                    </p>
+                    <p>{{message}}</p>
+                </div>
+            {% endfor %}
+        <!--
+            profile
+        -->
+        <div class="_profile">
+            <h1><span class="material-icons">person</span>Mon Compte</h1>
+            <p><b>Nom:</b> {{app.user.name}}</p>
+            <p><b>Prénom:</b> {{app.user.firstname}}</p>
+            <p><b>Email:</b> {{app.user.email}}</p>
+            <div>
+                <button><a href="{{path('user_profil_modifier')}}">Modifier le profil</a></button>
+                <button><a href="{{path('user_pass_modifier')}}">Modifier le mot de passe</a></button>
+            <div>
+        </div>
+        <!--
+            annonces
+        -->
+        <div class="_annonces">
+            <h1><span class="material-icons">list_alt</span>Mes Annonces ( {{ app.user.annonces|length}} )</h1>
+            {% for annonce in app.user.annonces %}
+                <p>Titre: {{annonce.title}}</p>
+                <p>{# <img src="{{app.user.annonce}}" alt="image annonce"> #}</p>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

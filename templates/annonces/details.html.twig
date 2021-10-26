@@ -1,0 +1,95 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ annonce.title }}{% endblock %}
+
+{% block body %}
+<div class="col-lg-10 m-lg-auto col-xxl-8 annonces_details">
+    <h1>{{annonce.title}}</h1>
+    <div>
+      <div class="carousel_annonce">
+
+            <div class="slider">
+            {% for image in annonce.images %}
+                  <img src="{{ asset('uploads/' ~ image.name) }}" alt="{{ annonce.title }}">
+            {% endfor %}
+            </div>
+
+            <div class="cont-btn">
+                  <div class="btn-nav left"><span class="material-icons">arrow_back_ios</span></div>
+                  <div class="btn-nav right"><span class="material-icons">arrow_forward_ios</span></div>
+            </div>
+            <div class="details">
+                  <p><span>Catégories:</span> {{ annonce.categories.name }}</p>
+                  <p><span>Description de l'annonce:</span><br>{{ annonce.content|u.truncate(150, '...') }}</p>
+            </div>
+      </div>
+</div>
+
+<script type="text/javascript">
+            
+     window.onload = () =>
+     {
+            const items = document.querySelectorAll('img');
+            const nbSlide = items.length;
+            const containerButton = document.querySelector('.cont-btn');
+            const suivant = document.querySelector('.right');
+            const precedent = document.querySelector('.left');
+            let count = 0;
+
+            if (nbSlide == 1)
+            {
+                  containerButton.style.display = 'none';
+            }
+
+            items[0].setAttribute('class','active');
+
+            function slideSuivante()
+            {
+                  items[count].classList.remove('active');
+
+                  if(count < nbSlide - 1)
+                  {
+                        count++;
+                  }
+                  else
+                  {
+                        count = 0;
+                  }
+
+                  items[count].classList.add('active')
+            }
+            suivant.addEventListener('click', slideSuivante)
+
+            function slidePrecedente()
+            {
+                  items[count].classList.remove('active');
+
+                  if(count > 0)
+                  {
+                        count--;
+                  }
+                  else
+                  {
+                        count = nbSlide - 1;
+                  }
+
+                  items[count].classList.add('active')
+            }
+            precedent.addEventListener('click', slidePrecedente)
+
+            function keyPress(e)
+            {
+                  if(e.keyCode === 37)
+                  {
+                        slidePrecedente();
+                  }
+                  else if(e.keyCode === 39)
+                  {
+                        slideSuivante();
+                  }
+            }
+            document.addEventListener('keydown', keyPress)
+}
+
+</script>
+{% endblock %}

@@ -1,0 +1,95 @@
+<!--
+        si utilisateur n'est pas connecté
+-->
+{% if is_granted('ROLE_USER') == false and is_granted('ROLE_ADMIN') == false %}
+<div class="container-fluid">
+      <nav class="navbar p-1 navbar-expand-lg navbar-light col-lg-10 col-xxl-8 m-lg-auto ">
+            <div class="container-fluid p-0">
+            <a class="navbar-brand site_title" href="{{ path('app_home') }}">Les Petites Annonces</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                  <ul class="navbar-nav me-auto mb-2 mb-lg-0 w-100 justify-content-end">
+                        <li class="nav-item">
+                        <a class="nav-link" href="{{ path('app_home')}}"><span class="material-icons">home</span>Accueil</a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link" href="{{ path('app_login') }}"><span class="material-icons">person</span>Connexion</a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link" href="{{ path('app_register') }}"><span class="material-icons">person_add</span>Inscription</a>
+                        </li>
+                  </ul>
+            </div>
+            </div>
+      </nav>
+</div>
+{% endif %}
+
+<!--
+      si l'utilisateur est connecté avec le rôle 'USER' mais n'a pas de rôle 'ADMIN'
+-->
+{% if is_granted('ROLE_USER') == true and not is_granted('ROLE_ADMIN')%}
+<div class="container-fluid">
+      <nav class="navbar p-1 navbar-expand-lg navbar-light col-lg-10 col-xxl-8 m-lg-auto ">
+            <div class="container-fluid p-0">
+                  <a class="navbar-brand site_title" href="{{ path('app_home') }}">Les Petites Annonces</a>
+                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                  <ul class="navbar-nav me-auto mb-2 mb-lg-0 w-100 justify-content-end">
+                        <li class="nav-item _deposer_annonce">
+                              <a class="nav-link" href="{{ path('user_annonces_ajout') }}"><span class="material-icons">add</span>Déposer une annonce</a>
+                        </li>
+                        <li class="nav-item">
+                              <a class="nav-link" href="{{ path('app_home')}}"><span class="material-icons">home</span>Accueil</a>
+                        </li>
+                        <li class="nav-item">
+                              <a class="nav-link" href="{{ path('user') }}"><span class="material-icons">person</span>Compte</a>
+                        </li>
+                        <li class="nav-item">
+                              <a class="nav-link" href="{{ path('app_logout') }}"><span class="material-icons">power_settings_new</span>Déconnexion</a>
+                        </li>
+                  </ul>
+                  </div>
+            </div>
+      </nav>
+</div>
+{% endif %}
+
+<!-- 
+      si l'utilisateur est connecté avec le rôle 'USER' et 'ADMIN'
+-->
+{% if is_granted('ROLE_ADMIN') == true and is_granted('ROLE_USER') == true %}
+<div class="container-fluid">
+      <nav class="navbar p-1 navbar-expand-lg navbar-light col-lg-10 col-xxl-8 m-lg-auto ">
+            <div class="container-fluid p-0">
+                  <a class="navbar-brand site_title" href="{{ path('app_home') }}">Les Petites Annonces</a>
+                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0 w-100 justify-content-end">
+                              <li class="nav-item _deposer_annonce">
+                                    <a class="nav-link" href="{{ path('user_annonces_ajout') }}"><span class="material-icons">add</span>Déposer une annonce</a>
+                              </li>
+                              <li class="nav-item">
+                                    <a class="nav-link" href="{{ path('app_home')}}"><span class="material-icons">home</span>Accueil</a>
+                              </li>
+                              <li class="nav-item">
+                                    <a class="nav-link" href="{{ path('admin_categories_home') }}"><span class="material-icons">category</span>Catégories</a>
+                              </li>
+                              <li class="nav-item">
+                                    <a class="nav-link" href="{{ path('admin_annonces_home') }}"><span class="material-icons">list_alt</span>Annonces</a>
+                              </li>
+                              <li class="nav-item">
+                                    <a class="nav-link" href="{{ path('user') }}"><span class="material-icons">person</span>Compte</a>
+                              </li>
+{#                               <li class="nav-item">
+                                    <a class="nav-link" href="{{ path('admin_home') }}"><span class="material-icons">admin_panel_settings</span>Admin</a>
+                              </li> #}
+                              <li class="nav-item">
+                                    <a class="nav-link" href="{{ path('app_logout') }}"><span class="material-icons">power_settings_new</span>Déconnexion</a>
+                              </li>
+                        </ul>
+                  </div>
+            </div>
+      </nav>
+</div>
+{% endif %}

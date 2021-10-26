@@ -1,0 +1,318 @@
+:root
+{
+      --orange: #ff6e14;
+}
+
+*
+{
+      font-family: 'Open Sans', sans-serif;
+}
+
+html,
+body
+{
+      overflow-x: hidden;
+}
+
+/*
+      home & nav
+*/
+.site_title
+{
+      font-family: 'Raleway';
+      font-size: 1.6em;
+      font-weight: 800;
+      color: var(--orange) !important;
+}
+
+/* déposer une annonce */
+ul.navbar-nav
+{
+      align-items: center;
+}
+
+._deposer_annonce > .nav-link
+{
+      justify-content: flex-start !important;
+      flex-direction: row !important;
+      margin-right: 30px;
+      background-color: var(--orange);
+      border-radius: 5px;
+      color: white !important;
+}
+
+._deposer_annonce > .nav-link:hover
+{
+      background-color: #bd4900;
+      color: white !important;
+}
+
+.nav-link
+{
+      color: black !important;
+      display:flex;
+      font-size: .9em;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      transition: color linear .3s,
+                        background-color linear .3s;
+}
+
+.nav-link:hover
+{
+      color: var(--orange) !important;
+}
+
+.nav-link > span.material-icons
+{
+      font-size: 1.9em;
+}
+
+/*
+      content
+*/
+.content
+{
+      min-height: 250px;
+      margin-top: 60px;
+      position: relative;
+      /* background: white; */
+}
+
+.content::before
+{
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 250px;
+      background-color: var(--orange);
+      border-radius: 0 0 100% 100%;
+      transform: scaleX(1.1);
+}
+
+.content > div
+{
+      position: relative;
+}
+
+/* annonces listes */
+.annonces_list > h1
+{
+      display: flex;
+      align-items: center;
+      margin-bottom: 40px;
+      font-family: 'Raleway';
+      font-weight: 800;
+}
+
+.annonces_list > h1 > span
+{
+      font-size: 1em;
+}
+
+.annonces_list > a
+{
+      text-decoration: none;
+      color: black;
+}
+
+.annonces_list > a > div
+{
+      display: flex;
+      margin: 30px 0;
+      border: 2px #F3F3F3 solid;
+      transition: border-color linear .3s;
+}
+
+.annonces_list > a > div:hover
+{
+      border: 2px var(--orange) solid;
+}
+
+.annonces_list > a > div > div:nth-child(2)
+{
+      padding: 5px 10px;
+}
+
+.annonces_list > a > div > div:nth-child(2) > p:nth-child(2)
+{
+      font-size: .8em;
+      font-weight: bold;
+}
+
+/* annonce details */
+.annonces_details > h1
+{
+      display: flex;
+      align-items: center;
+      margin-bottom: 40px;
+      font-family: 'Raleway';
+      font-weight: 800;
+}
+
+.carousel_annonce
+{
+ /*      width: 600px;
+      height: 600px; */
+      margin: 0 auto;
+      padding: 0 50px 50px;
+}
+
+.slider
+{
+      background-color: #F3F3F3;
+      overflow: hidden;
+      border-bottom: 2px white solid;
+}
+
+.slider img
+{
+      max-width: 600px;
+      height: 400px;
+      display: none;
+      margin: 0 auto;
+}
+
+img.active
+{
+      display: block;
+      animation: fade 0.8s;
+}
+
+@keyframes fade
+{
+      from
+      {
+            opacity: 0;
+      }
+      to
+      {
+            opacity: 1;
+      }
+}
+
+.cont-btn
+{
+      display: flex;
+      width: 100%;
+      /* height: 200px; */
+      height: auto;
+      background-color: #F3F3F3;
+}
+
+.btn-nav
+{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      padding: 25px;
+      font-size: 5rem;
+      text-align: center;
+      border: 2px white solid;
+      cursor: pointer;
+      transition: background-color ease-in-out .3s,
+                        color ease-in-out .3s;
+/*       font-size: 50px;
+      margin: 0 15px;
+      cursor: pointer; */
+}
+
+.btn-nav:hover
+{
+      color: white;
+      background-color: var(--orange);
+}
+
+.btn-nav:active
+{
+      transition: background-color ease-in-out .1s,
+                        color ease-in-out .1s;
+      background-color: var(--bs-primary);
+}
+
+.btn-nav > span
+{
+      user-select: none;
+}
+
+.details > p > span
+{
+      font-size: .9em;
+      font-weight: 800;
+}
+
+/*
+      login
+*/
+.login h1
+{
+      font-family: 'Raleway';
+      display: flex;
+      align-items: center;
+      margin-bottom: 40px;
+      font-weight: 800;
+}
+
+.login h1 > span
+{
+      font-size: 1em;
+}
+
+/************************/
+.annonces_list,
+.annonces_details,
+._gerer_annonces,
+._gerer_categories,
+._user,
+._edit_profil,
+._edit_pass
+{
+      background-color: white;
+}
+
+/*
+      flash msg
+*/
+._flash_msg
+{
+      position: absolute;
+      top: 0;
+      right: 0;
+      min-width: 250px;
+      white-space: nowrap;
+}
+
+._flash_msg > p:nth-child(1)
+{
+      margin: 0;
+      display: flex;
+      justify-content: space-between;
+      padding: 5px;
+      background-color: var(--orange);
+}
+
+._flash_msg > p:nth-child(1) > span
+{
+      color: white;
+      font-size: 1.1em;
+}
+
+/* close */
+._flash_msg > p:nth-child(1) > span:nth-child(2)
+{
+      cursor: pointer;
+}
+
+/* msg */
+._flash_msg > p:nth-child(2)
+{
+      margin: 0;
+      padding: 20px 5px;
+      font-size: 1em;
+      background-color: white;
+      border: 1px solid #B2B2B2;
+}

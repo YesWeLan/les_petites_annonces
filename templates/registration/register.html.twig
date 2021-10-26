@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent()}} | Inscription{% endblock %}
+
+{% block body %}
+
+    {% for flashError in app.flashes('verify_email_error') %}
+        <div class="alert alert-danger" role="alert">{{ flashError }}</div>
+    {% endfor %}
+
+    <div class="col-lg-10 m-lg-auto col-xxl-8 bg-white">
+        <h1><span class="material-icons" style="font-size: 1em">person_add</span>Inscription</h1>
+        {{ form_start(registrationForm) }}
+            {{ form_row(registrationForm.name) }}
+            {{ form_row(registrationForm.firstname) }}
+            {{ form_row(registrationForm.email) }}
+            {{ form_row(registrationForm.plainPassword, {
+                label: 'Password'
+            }) }}
+            <button type="submit" class="btn">Register</button>
+        {{ form_end(registrationForm) }}
+    </div>
+
+    <script type="text/javascript">
+        $('.form-group').css({
+            'display': 'flex',
+            'flex-direction': 'column',
+            'justify-content': 'center'
+        });
+
+        $('form button').css({
+            'margin': '20px 0'
+        })
+
+        $('form button').attr('class', 'btn btn-primary');
+
+                    $('h1').css({
+                  'font-family': 'Raleway',
+                  'display': 'flex',
+                  'align-items': 'center',
+                  'margin-bottom': '40px',
+                  'font-weight': '800'
+            })
+    </script>
+
+{% endblock %}

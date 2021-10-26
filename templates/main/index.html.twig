@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent()}} | Accueil{% endblock %}
+
+{% block body %}
+
+<style>
+        .body_content,
+        {
+            /*
+            width: 100%;
+            height: 190px;
+            background-color: var(--lbc-orange);
+            border-radius: 0 0 100% 100%;
+            overflow: hidden;
+            transform: scale(1.1,1.1);
+            */
+     /*        width: 100%;
+            position: relative;
+            overflow-x: hidden; */
+        }
+
+/*         .body_content::before,
+        {
+            content: '';
+            position: absolute;
+            top:0;
+            left: 0;
+            width: 100%;
+            height: 190px;
+            background-color: var(--orange);
+            border-radius: 0 0 50% 50%;
+            transform: scale(1.1,1.1);
+        } */
+
+</style>
+
+<div class="col-lg-10 m-lg-auto col-xxl-8 annonces_list">
+    <h1><span class="material-icons" >list_alt</span>Liste des annonces</h1>
+    {% for annonce in annonces %}
+    <a href="{{ path('annonces_details', {slug: annonce.slug}) }}">
+        <div>
+            <div>
+                <img src="{{ asset('uploads/' ~ annonce.images[0].name)|imagine_filter('square') }}" alt="{{ annonce.title }}">
+            </div>
+            <div>
+                <h3>{{ annonce.title }}</h3>
+                <p>{{ annonce.categories.name }}
+                <p>{{ annonce.content|u.truncate(150, '...') }}</p>
+            </div>
+        </div>
+    </a>
+    {% endfor %}
+</div>
+
+{% endblock %}

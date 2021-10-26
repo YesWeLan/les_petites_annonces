@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier mon mot de passe{% endblock %}
+
+{% block body %}
+    <!-- 
+        user
+    -->
+    <div class="col-lg-10 m-lg-auto col-xxl-8 _user">
+            <!--
+                  flash message
+            -->
+            {% for message in app.flashes('error') %}
+                  <div class="_flash_msg">
+                        <p>
+                              <span class="material-icons">notifications</span>
+                              <span class="material-icons" onclick="closePopup()">close</span>
+                        </p>
+                        <p>{{message}}</p>
+                  </div>
+            {% endfor %}
+            <!--
+                  edit pass
+            -->
+            <div class="_edit_pass">
+                  <h1><span class="material-icons">edit</span>Modifier mon mot de passe</h1>
+                  <form method="POST">
+                        <div class="mb-3 col-10 col-md-5">
+                              <label for="pass_1" class="form-label">Entrez un nouveau mot de passe</label>
+                              <input type="password" class="form-control" id="pass_1" name="pass_1">
+                        </div>
+                        <div class="mb-3 col-10 col-md-5">
+                              <label for="pass_2" class="form-label">Confirmer le nouveau mot de passe</label>
+                              <input type="password" class="form-control" id="pass_2" name="pass_2">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Valider</button>
+                  </form>
+            </div>
+      </div>
+{% endblock %}

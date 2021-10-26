@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Reset your password{% endblock %}
+
+{% block body %}
+    <div class="col-lg-10 m-lg-auto col-xxl-8 bg-white">
+        {% for flashError in app.flashes('reset_password_error') %}
+            <div class="alert alert-danger" role="alert">{{ flashError }}</div>
+        {% endfor %}
+        <h1><span class="material-icons" style="font-size: 1em;">lock_open</span>Reset your password</h1>
+
+        {{ form_start(requestForm) }}
+            {{ form_row(requestForm.email) }}
+
+            <button class="btn btn-primary">Send password reset email</button>
+        {{ form_end(requestForm) }}
+    </div>
+
+    <script type="text/javascript">
+        $('.form-group').css({
+                'display': 'flex',
+                'flex-direction': 'column',
+                'justify-content': 'center'
+        });
+
+        $('form button').css({
+                'margin': '20px 0'
+        })
+
+        $('h1').css({
+                'font-family': 'Raleway',
+                'display': 'flex',
+                'align-items': 'center',
+                'margin-bottom': '40px',
+                'font-weight': '800'
+        })
+</script>
+
+{% endblock %}

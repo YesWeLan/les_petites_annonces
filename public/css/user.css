@@ -1,0 +1,142 @@
+/*
+      user
+*/
+._user
+{
+      position: relative;
+}
+
+/*
+      profile  / annonces
+*/
+._profile > h1,
+._annonces > h1
+{
+      display: flex;
+      align-items: center;
+      margin-bottom: 40px;
+      font-family: 'Raleway';
+      font-weight: 800;
+}
+
+._profile > h1 > span,
+._annonces > h1 > span
+{
+      font-size: 1em;
+}
+
+._profile > div > button
+{
+      padding: 7px 20px;
+      background-color: var(--bs-primary);
+      border: none;
+      outline: none;
+      transition: background-color linear .3s;
+}
+
+._profile > div > button:hover
+{
+      background-color: var(--orange);
+}
+
+._profile > div > button > a
+{
+      font-size: 1em;
+      color: white;
+      text-decoration: none;
+      outline: none;
+}
+
+._annonces
+{
+      margin-top: 80px;
+}
+
+/*
+      edit profile
+*/
+._edit_profil > h1
+{
+      font-family: 'Raleway';
+      display: flex;
+      align-items: center;
+      margin-bottom: 40px;
+      font-weight: 800;
+}
+
+._edit_profil > h1 > b
+{
+      font-weight: 600;
+}
+
+._edit_profil > h1 > span
+{
+      font-size: 1em;
+}
+
+._edit_profil > div > button
+{
+      padding: 7px 20px;
+      background-color: var(--bs-primary);
+      border: none;
+      outline: none;
+      transition: background-color linear .3s;
+}
+
+._edit_profil > div > button:hover
+{
+      background-color: var(--orange);
+}
+
+._edit_profil > div > button > a
+{
+      font-size: 1em;
+      color: white;
+      text-decoration: none;
+      outline: none;
+}
+
+/*
+      edit pass
+*/
+._edit_pass > h1
+{
+      font-family: 'Raleway';
+      display: flex;
+      align-items: center;
+      margin-bottom: 40px;
+      font-weight: 800;
+}
+
+._edit_pass > h1 > b
+{
+      font-weight: 600;
+}
+
+._edit_pass > h1 > span
+{
+      font-size: 1em;
+}
+
+._edit_pass > div > button
+{
+      padding: 7px 20px;
+      background-color: var(--bs-primary);
+      border: none;
+      outline: none;
+      transition: background-color linear .3s;
+}
+
+._edit_pass > div > button:hover
+{
+      background-color: var(--orange);
+}
+
+._edit_pass > div > button > a
+{
+      font-size: 1em;
+      color: white;
+      text-decoration: none;
+      outline: none;
+}
+

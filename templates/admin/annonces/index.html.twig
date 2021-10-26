@@ -1,0 +1,112 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent()}} | Gérer les annonces{% endblock %}
+
+{% block body %}
+
+<style>
+
+</style>
+    <!--
+        gerer annonces
+    -->
+    <div class="col-lg-10 m-lg-auto col-xxl-8 _gerer_annonces">
+        <!--
+            flash message
+        -->
+        {% for message in app.flashes('message') %}
+            <div class="_flash_msg">
+                <p>
+                    <span class="material-icons">notifications</span>
+                    <span class="material-icons" onclick="closePopup()">close</span>
+                </p>
+                <p>{{message}}</p>
+            </div>
+        {% endfor %}
+        <h1><span class="material-icons" >list_alt</span>Gérer les annonces</h1>
+      {#   <button><a href="{{path('admin_categories_ajout')}}">Ajouter une annonces</a></button> #}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Titre</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Active</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for annonce in annonces %}
+                <tr>
+                    <th scope="row">{{annonce.id}}</th>
+                    <td>{{annonce.title}}</td>
+                    <td>{{annonce.createdAt|date}}</td>
+                    <td>
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" {{ (annonce.active) ? 'checked' : '' }} data-id="{{annonce.id}}">
+                            <label class="form-check-label" for="flexSwitchCheckChecked">en ligne</label>
+                        </div>
+                    </td>
+                    <td>
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-danger supprimer" data-bs-toggle="modal" data-bs-target="#exampleModal" data-id="{{annonce.id}}" data-titre="{{annonce.title}}">Supprimer</button>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Supprimer l'annonce <span style='color:var(--orange); font-weight: bold'>{# {{annonce.title}} #}</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Voulez vous vraiment supprimer cette annonce ?
+                    </div>
+                    <div class="modal-footer">
+                        <a type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</a>
+                        <a type="button" class="btn btn-danger" >Supprimer</a>{# data-id="{{annonce.id}}" data-titre="{{annonce.title}}" #}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        window.onload = () =>
+        {
+            /*
+                activer annonce
+            */
+            let activer = document.querySelectorAll('[type=checkbox]');
+            for (let button of activer)
+            {
+                button.addEventListener('click', function()
+                {
+                    let xhr = new XMLHttpRequest;
+
+                    xhr.open('get',`/admin/annonces/activer/${this.dataset.id}`);
+                    xhr.send();
+                });
+            }
+
+            /*
+                supprimer annonce
+            */
+            let supprimer = document.querySelectorAll('.supprimer');
+            for (let button of supprimer)
+            {
+                button.addEventListener('click', function()
+                {
+                    document.querySelector('.modal-footer a:nth-child(2)').href = `/admin/annonces/supprimer/${this.dataset.id}`;
+                    document.querySelector('.modal-title > span').innerText = this.dataset.titre;
+                });
+            }
+        }
+    </script>
+
+{% endblock %}
